@@ -1,20 +1,21 @@
+require('dotenv').config()
+
+const { TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN } = require('./config')
+
 // Download the helper library from https://www.twilio.com/docs/node/install
 // Your Account Sid and Auth Token from twilio.com/console
-// DANGER! This is insecure. See http://twil.io/secure
-const accountSid = 'ACc2933851737c32a05609a13d4510ab4d';
-const authToken = 'a199ad4fa6b49e7f1ea1562cbaffb0cd';
-const client = require('twilio')(accountSid, authToken);
+const accountSid = process.env.TWILIO_ACCOUNT_SID
+const authToken = process.env.TWILIO_AUTH_TOKEN
+const client = require('twilio')(accountSid, authToken)
 
-const fetch = require('node-fetch');
-
-console.log('hello')
+const fetch = require('node-fetch')
 
 function callback(reminder){
-    console.log(reminder)
+    
     let unformattedDate = new Date()
-    console.log(unformattedDate)
+    
     let currentDate = unformattedDate.toISOString().split('T')[0]
-    console.log(currentDate)
+    
     if(reminder.reminder_date == currentDate){
         
         client.messages
@@ -23,12 +24,10 @@ function callback(reminder){
                 from: '+19253612644', //E.164 formatting
                 to: `+1${reminder.phone_number}`
             })
-            .then(message => console.log(message.sid));
+            .then(message => console.log(message.sid))
         
 
         newWateringDate = new Date(new Date().getTime()+(reminder.water_every*24*60*60*1000)).toISOString().split('T')[0]
-        console.log(currentDate)
-        console.log(newWateringDate)
 
         reminderId = reminder.reminder_id
         
