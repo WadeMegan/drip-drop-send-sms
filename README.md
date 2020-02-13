@@ -8,6 +8,9 @@ The Drip Drop API was built for use with drip-drop-client ([repo](https://github
 
 drip-drop-send-sms is built using Node.js. The file send-sms.js, uses the node-fetch package to make a GET request to the Drip Drop API sms endpoint. It then iterates through the sms list to check if the reminder date is equal to the current date. If so, it uses the Twilio API to send a reminder message to the user. If a text is sent, the reminder date is updated so that the user will recieve another message when the plant needs to be watered again. drip-drop-send-sms is deployed on Heroku and using Heroku's built in scheduler, send-sms.js is run once per day every day.
 
+
+![heroku scheduler](https://i.imgur.com/OopSgUr.png)
+
 ## The Drip Drop Project
 
 ### Live App
