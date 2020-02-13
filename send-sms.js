@@ -15,6 +15,7 @@ function callback(reminder){
     
     let currentDate = unformattedDate.toISOString().split('T')[0]
     
+    // checking if the date of the reminder is equal to today's date, and if it is, will send sms and update the reminder date
     if(reminder.reminder_date == currentDate){
         
         client.messages
@@ -30,6 +31,8 @@ function callback(reminder){
 
         reminderId = reminder.reminder_id
         
+        // making a patch request to the Drip Drop API's reminder endpoint to update the remind_on date of the reminder
+        // Ex. if the plant needs to be watered every 3 days, the new remind_on date will be 3 days from the current date. This ensures that in 3 days, another sms will be sent.
         fetch(`https://desolate-oasis-71104.herokuapp.com/api/reminders/${reminderId}`,{
             method: 'PATCH',
             body: JSON.stringify({
@@ -46,6 +49,8 @@ function callback(reminder){
 
 }
 
+// makes get request to the Drip Drop API's sms endpoint to get list of reminders 
+// reminders returned from the sms endpoint also contain information necessary for sending sms messages
 fetch('https://desolate-oasis-71104.herokuapp.com/api/sms')
     .then((res)=> {return res.json()})
     .then((json)=>{
