@@ -1,27 +1,40 @@
+# Drip Drop Send SMS
 
-# 
+## Use 
 
-This is a boilerplate project used for starting new projects!
+The Drip Drop API was built for use with drip-drop-client ([repo](https://github.com/WadeMegan/drip-drop)/[live app](https://drip-drop.now.sh/)) and drip-drop-api ([repo](https://github.com/WadeMegan/drip-drop-api)). 
 
-## Set up
+## How It Works
 
-Complete the following steps to start a new project (NEW-PROJECT-NAME):
+drip-drop-send-sms is built using Node.js. The file send-sms.js, uses the node-fetch package to make a GET request to the Drip Drop API sms endpoint. It then iterates through the sms list to check if the reminder date is equal to the current date. If so, it uses the Twilio API to send a reminder message to the user. If a text is sent, the reminder date is updated so that the user will recieve another message when the plant needs to be watered again. drip-drop-send-sms is deployed on Heroku and using Heroku's built in scheduler, send-sms.js is run once per day every day.
 
-1. Clone this repository to your local machine `git clone BOILERPLATE-URL NEW-PROJECTS-NAME`
-2. `cd` into the cloned repository
-3. Make a fresh start of the git history for this project with `rm -rf .git && git init`
-4. Install the node dependencies `npm install`
-5. Move the example Environment file to `.env` that will be ignored by git and read by the express server `mv example.env .env`
-6. Edit the contents of the `package.json` to use NEW-PROJECT-NAME instead of `"name": "express-boilerplate",`
+## The Drip Drop Project
 
-## Scripts
+### Live App
 
-Start the application `npm start`
+A live version of the app can be accessed [here](https://drip-drop.now.sh/).
 
-Start nodemon for the application `npm run dev`
+To demo Drip Drop, log in with:
+* Email: test@gmail.com
+* Password: password
 
-Run the tests `npm test`
+### Summary
 
-## Deploying
+Drip Drop is a web application that reminds users to water their houseplants. Users can select the plants they have from a list of common houseplants. Each day, Drip Drop will check to see if any of the user's plants will need to be watered. If so, Drip Drop will send the user a sms message as a reminder. The goal of Drip Drop is to make it easier for users to remember when they should be watering their plants, in order to prevent fewer houseplant deaths caused by over or under watering.
 
-When your new project is ready for deployment, add a new Heroku application with `heroku create`. This will make a new git remote called "heroku" and you can then `npm run deploy` which will push to this remote's master branch.
+### Technologies Used
+
+#### Front End: 
+* ReactJS
+* jQuery
+* HTML
+* CSS
+
+#### Back End: 
+* Node.js
+* Express
+* PostgreSQL
+
+#### APIs:
+* Twilio
+* Drip Drop API ([documentation](https://github.com/WadeMegan/drip-drop-api))
