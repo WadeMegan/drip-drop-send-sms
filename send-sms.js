@@ -9,8 +9,11 @@ const accountSid = process.env.TWILIO_ACCOUNT_SID
 const authToken = process.env.TWILIO_AUTH_TOKEN
 const client = require('twilio')(accountSid, authToken)
 
+console.log(accountSid)
+console.log(authToken)
+
 function callback(reminder){
-    
+    console.log(reminder.reminder_date)
     let unformattedDate = new Date()
     
     let currentDate = unformattedDate.toISOString().split('T')[0]
@@ -26,7 +29,7 @@ function callback(reminder){
             })
             .then(message => console.log(message.sid))
         
-
+        
         newWateringDate = new Date(new Date().getTime()+(reminder.water_every*24*60*60*1000)).toISOString().split('T')[0]
 
         reminderId = reminder.reminder_id
