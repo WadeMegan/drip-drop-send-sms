@@ -5,15 +5,12 @@ const { TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN } = require('./config')
 
 // Download the helper library from https://www.twilio.com/docs/node/install
 // Your Account Sid and Auth Token from twilio.com/console
-const accountSid = process.env.TWILIO_ACCOUNT_SID
-const authToken = process.env.TWILIO_AUTH_TOKEN
+const accountSid = process.env.TWILIO_ACCOUNT_SID //set in heroku 
+const authToken = process.env.TWILIO_AUTH_TOKEN //set in heroku
 const client = require('twilio')(accountSid, authToken)
 
-console.log(accountSid)
-console.log(authToken)
 
 function callback(reminder){
-    console.log(reminder.reminder_date)
     let unformattedDate = new Date()
     
     let currentDate = unformattedDate.toISOString().split('T')[0]
